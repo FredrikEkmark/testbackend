@@ -15,7 +15,7 @@ const Index: NextPage<Props> = ({}) => {
   const [users, setUsers] = useState<User[]>([])
 
   const getUsers = async () => {
-    const res = await fetch("https://testbackend-tau.vercel.app/api/users")
+    const res = await fetch("api/users")
     const data = await res.json()
     setUsers(data)
   }
