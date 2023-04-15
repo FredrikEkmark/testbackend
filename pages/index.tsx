@@ -76,6 +76,7 @@ const Index: NextPage<Props> = ({}) => {
 
   return (
     <div>
+      <h1>RESTfull Next.js Basic application</h1>
       <form onSubmit={handleSubmit}>
         <p>name - email</p>
         <input
