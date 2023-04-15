@@ -153,6 +153,12 @@ const Index: NextPage<Props> = ({}) => {
         behöver. Rekomenderar att ta den model data som finns nuvarande och
         stoppa in i chatGPT och be om en nogran förklaring av vad allt betyder.
       </p>
+      <p>Installera prisma/client: npm install @prisma/client</p>
+      <p>Kör: npx prisma generate</p>
+      <p>
+        Detta skapar din struktur och behövs göras varje gång schema.prisma
+        pushas up på nytt
+      </p>
       <p>Sen bör det funka om ni gjort en pull av detta projekt från gitHub</p>
       <p>
         Ifall ni vill depoya på vercel.com så måste ni skapa en Environment
