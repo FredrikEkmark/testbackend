@@ -98,6 +98,9 @@ const Index: NextPage<Props> = ({}) => {
         />
         <button type="submit">Update User</button>
       </form>
+      <br />
+      <p>Link till projeket på gitHub.</p>
+      <p>https://github.com/FredrikEkmark/testbackend</p>
     </div>
   )
 }
