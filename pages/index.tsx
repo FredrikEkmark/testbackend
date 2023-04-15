@@ -15,7 +15,7 @@ const Index: NextPage<Props> = ({}) => {
   const [users, setUsers] = useState<User[]>([])
 
   const getUsers = async () => {
-    const res = await fetch("api/users")
+    const res = await fetch("api/get")
     const data = await res.json()
     setUsers(data)
   }
@@ -128,8 +128,40 @@ const Index: NextPage<Props> = ({}) => {
         <button type="submit">Delete User</button>
       </form>
       <br />
-      <p>Link till projeket på gitHub.</p>
+      <h4>Link till projeket på gitHub.</h4>
       <p>https://github.com/FredrikEkmark/testbackend</p>
+
+      <br />
+      <h4>Installationsguide</h4>
+      <p>Skapa en databas på https://supabase.com/</p>
+
+      <p>Installera i ditt next.js projekt:</p>
+      <p>Installera prisma: npm install prisma --save-dev</p>
+      <p>Skapa en fil i root: .env</p>
+      <p>
+        Skriv i .env:
+        DATABASE_URL="postgresql://postgres:[YOUR-PASSWORD]@db.ObubJTKrJYcPSkdsWqms.supabase.co:5432/postgres"
+      </p>
+      <p>
+        Det som skrivs in vid DATABASE_URL ska ni ta från er egen supabase
+        databas connection string
+      </p>
+      <p>Pusha din schema.prisma fil till din databas: npx prisma db push</p>
+      <p>
+        Du kan modiferia din schema.prisma fil till att ha med den data du
+        behöver. Rekomenderar att ta den model data som finns nuvarande och
+        stoppa in i chatGPT och be om en nogran förklaring av vad allt betyder.
+      </p>
+      <p>Sen bör det funka om ni gjort en pull av detta projekt från gitHub</p>
+      <p>
+        Ifall ni vill depoya på vercel.com så måste ni skapa en Environment
+        Variables som matchar er .env fil
+      </p>
+
+      <p>
+        Jag använde mig av https://vercel.com/guides/nextjs-prisma-postgres för
+        att skapa detta och det finns mycket mer info om man gå djupare.
+      </p>
     </div>
   )
 }
