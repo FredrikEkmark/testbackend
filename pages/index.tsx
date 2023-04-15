@@ -21,11 +21,83 @@ const Index: NextPage<Props> = ({}) => {
   }
   getUsers()
 
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [userId, setUserId] = useState("")
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const res = await fetch("/api/post", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, email }),
+    })
+    const newUser = await res.json()
+    setUsers([...users, newUser])
+    setName("")
+    setEmail("")
+  }
+
+  const handleUpdate = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const res = await fetch(`/api/update?id=${userId}`, {
+      // Pass user ID in the request URL
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, email }),
+    })
+    const updatedUser = await res.json()
+    setUsers(
+      users.map((user) => (user.id === updatedUser.id ? updatedUser : user))
+    ) // Update the user in the state
+    setName("")
+    setEmail("")
+    setUserId("")
+  }
+
   return (
     <div>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={name}
+          onChange={(event) => setName(event.target.value)}
+        />
+        <input
+          type="email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+        />
+        <button type="submit">Create User</button>
+      </form>
       {users.map((user) => (
-        <div key={user.id}>{user.name}</div>
+        <div key={user.id}>
+          {user.name} - {user.email} - {user.id}
+        </div>
       ))}
+
+      <form onSubmit={handleUpdate}>
+        <input
+          type="text"
+          value={name}
+          onChange={(event) => setName(event.target.value)}
+        />
+        <input
+          type="email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+        />
+        <input
+          type="text"
+          value={userId}
+          onChange={(event) => setUserId(event.target.value)}
+        />
+        <button type="submit">Update User</button>
+      </form>
     </div>
   )
 }
