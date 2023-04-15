@@ -59,6 +59,21 @@ const Index: NextPage<Props> = ({}) => {
     setUserId("")
   }
 
+  const handleDelete = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const res = await fetch(`/api/delete?id=${userId}`, {
+      // Pass user ID in the request URL
+      method: "DELETE",
+    })
+    if (res.ok) {
+      const updatedUsers = users.filter((user) => user.id !== userId)
+      setUsers(updatedUsers)
+      setName("")
+      setEmail("")
+      setUserId("")
+    }
+  }
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -97,6 +112,14 @@ const Index: NextPage<Props> = ({}) => {
           onChange={(event) => setUserId(event.target.value)}
         />
         <button type="submit">Update User</button>
+      </form>
+      <form onSubmit={handleDelete}>
+        <input
+          type="text"
+          value={userId}
+          onChange={(event) => setUserId(event.target.value)}
+        />
+        <button type="submit">Delete User</button>
       </form>
       <br />
       <p>Link till projeket på gitHub.</p>

@@ -5,10 +5,10 @@ const prisma = new PrismaClient()
 
 const handler: NextApiHandler = async (req, res) => {
   if (req.method === "DELETE") {
-    const { id } = req.body
+    const userId = req.query.id as string
     const userToDelete = await prisma.user.delete({
       where: {
-        id,
+        id: userId,
       },
     })
     res.status(204).end()
