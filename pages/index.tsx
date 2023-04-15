@@ -88,6 +88,7 @@ const Index: NextPage<Props> = ({}) => {
           onChange={(event) => setEmail(event.target.value)}
         />
         <button type="submit">Create User</button>
+        <p>name - email</p>
       </form>
       {users.map((user) => (
         <div key={user.id}>
@@ -112,6 +113,7 @@ const Index: NextPage<Props> = ({}) => {
           onChange={(event) => setUserId(event.target.value)}
         />
         <button type="submit">Update User</button>
+        <p> name - email - id</p>
       </form>
       <form onSubmit={handleDelete}>
         <input
@@ -120,6 +122,7 @@ const Index: NextPage<Props> = ({}) => {
           onChange={(event) => setUserId(event.target.value)}
         />
         <button type="submit">Delete User</button>
+        <p> id</p>
       </form>
       <br />
       <p>Link till projeket på gitHub.</p>
